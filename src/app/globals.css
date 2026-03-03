@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens — 8pt base, 1.25 type scale */
+:root {
+  /* Space (8pt base) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* Type scale (1.25 ratio) */
+  --text-1: 0.64rem;    /* 10.24px */
+  --text-2: 0.8rem;     /* 12.8px */
+  --text-3: 1rem;       /* 16px */
+  --text-4: 1.25rem;    /* 20px */
+  --text-5: 1.5625rem;   /* 25px */
+  --text-6: 1.953125rem; /* 31.25px */
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+
+  /* Measure for readable body */
+  --measure: 45rem;     /* ~720px */
+  --content-width: 80rem; /* 1280px */
+
+  /* Colors — system-inspired minimal */
+  --color-fg: #1a1a1a;
+  --color-fg-muted: #5c5c5c;
+  --color-bg: #fafafa;
+  --color-bg-elevated: #ffffff;
+  --color-border: #e5e5e5;
+  --color-accent: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-fg: #f5f5f5;
+    --color-fg-muted: #a3a3a3;
+    --color-bg: #0a0a0a;
+    --color-bg-elevated: #171717;
+    --color-border: #262626;
+    --color-accent: #3b82f6;
+  }
+}
+
+[data-theme="light"] {
+  --color-fg: #1a1a1a;
+  --color-fg-muted: #5c5c5c;
+  --color-bg: #fafafa;
+  --color-bg-elevated: #ffffff;
+  --color-border: #e5e5e5;
+  --color-accent: #2563eb;
+}
+
+[data-theme="dark"] {
+  --color-fg: #f5f5f5;
+  --color-fg-muted: #a3a3a3;
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #171717;
+  --color-border: #262626;
+  --color-accent: #3b82f6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  p {
+    font-size: 1rem; /* 16px */
+    line-height: var(--leading-normal);
+  }
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
