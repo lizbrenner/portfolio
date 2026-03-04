@@ -8,6 +8,8 @@ type WorkItem =
       context: string;
       description: string;
       image?: string;
+      imageLight?: string;
+      imageDark?: string;
       placeholder?: false;
     }
   | {
@@ -25,7 +27,8 @@ const work: WorkItem[] = [
     title: "Aura",
     context: "Cognite",
     description: "AI-native design system that cut time to market from 3+ months to 6 weeks",
-    image: "/images/aura.jpg",
+    imageLight: "/images/aura cover image light.png",
+    imageDark: "/images/aura cover image dark.png",
   },
   {
     slug: "agent-landing",
@@ -61,11 +64,34 @@ export default function HomePage() {
           return (
             <ul key={colIndex} className="space-y-space-10 md:space-y-space-12 flex flex-col">
               {columnItems.map((item) => {
+                const hasThemeImages = !item.placeholder && "imageLight" in item && item.imageLight && item.imageDark;
+                const hasSingleImage = !item.placeholder && "image" in item && item.image;
                 const imageBlock =
-                  item.image ? (
+                  hasThemeImages ? (
+                    <div className="relative w-full aspect-[16/10] rounded overflow-hidden bg-brand-fg-muted/10 group-hover:opacity-95 transition-opacity">
+                      <span className="theme-cover-light absolute inset-0 block">
+                        <Image
+                          src={encodeURI(item.imageLight!)}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </span>
+                      <span className="theme-cover-dark absolute inset-0 block">
+                        <Image
+                          src={encodeURI(item.imageDark!)}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </span>
+                    </div>
+                  ) : hasSingleImage ? (
                     <div className="relative w-full aspect-[16/10] rounded overflow-hidden bg-brand-fg-muted/10 group-hover:opacity-95 transition-opacity">
                       <Image
-                        src={item.image}
+                        src={item.image!}
                         alt=""
                         fill
                         className="object-cover"

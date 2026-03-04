@@ -91,3 +91,17 @@
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+/* Theme-aware case study cover images */
+.theme-cover-light {
+  display: block;
+}
+.theme-cover-dark {
+  display: none;
+}
+[data-theme="dark"] .theme-cover-light {
+  display: none;
+}
+[data-theme="dark"] .theme-cover-dark {
+  display: block;
+}
