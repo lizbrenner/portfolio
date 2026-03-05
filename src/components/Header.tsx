@@ -3,7 +3,7 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 const mainNav = [
   { href: "/", label: "Work" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About" },
 ];
 
 export function Header() {

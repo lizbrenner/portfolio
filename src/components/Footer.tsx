@@ -6,9 +6,7 @@ import {
 } from "@tabler/icons-react";
 
 const footerLinks = [
-  { href: "/about", label: "About" },
   { href: "/writing", label: "Hobby projects" },
-  { href: "/contact", label: "Contact" },
 ];
 
 const socialLinks = [

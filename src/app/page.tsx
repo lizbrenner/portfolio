@@ -27,8 +27,8 @@ const work: WorkItem[] = [
     title: "Aura",
     context: "Cognite",
     description: "AI-native design system that cut time to market from 3+ months to 6 weeks",
-    imageLight: "/images/aura cover image light.png",
-    imageDark: "/images/aura cover image dark.png",
+    imageLight: "/images/aura-cover-light.png",
+    imageDark: "/images/aura-cover-dark.png",
   },
   {
     slug: "agent-landing",
@@ -38,10 +38,10 @@ const work: WorkItem[] = [
     image: "/images/agent-landing.jpg",
   },
   {
-    slug: "placeholder",
-    title: "Case study",
-    context: "",
-    description: "Coming soon",
+    slug: "designer-drop",
+    title: "Designer Drop",
+    context: "Cognite",
+    description: "Internal tool to connect design work across a global team and alleviate the pain point of siloed work.",
     placeholder: true,
   },
 ];
@@ -71,20 +71,22 @@ export default function HomePage() {
                     <div className="relative w-full aspect-[16/10] rounded overflow-hidden bg-brand-fg-muted/10 group-hover:opacity-95 transition-opacity">
                       <span className="theme-cover-light absolute inset-0 block">
                         <Image
-                          src={encodeURI(item.imageLight!)}
+                          src={item.imageLight!}
                           alt=""
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
+                          unoptimized
                         />
                       </span>
                       <span className="theme-cover-dark absolute inset-0 block">
                         <Image
-                          src={encodeURI(item.imageDark!)}
+                          src={item.imageDark!}
                           alt=""
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
+                          unoptimized
                         />
                       </span>
                     </div>

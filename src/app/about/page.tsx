@@ -1,88 +1,70 @@
-import Link from "next/link";
-
-const pillars = [
-  "AI fluency — leveraging AI-assisted design tools, guiding generative workflows, evaluating AI-driven recommendations.",
-  "System thinking at scale — token architectures, component contracts, registry pipelines so the system grows cohesively.",
-  "Data-informed design — usage metrics and telemetry to make decisions that benefit the ecosystem, not just individual screens.",
-  "Cross-functional orchestration — collaborating with engineers, AI specialists, and product so patterns, automation, and tooling reinforce the same philosophy.",
-];
-
 export default function AboutPage() {
   return (
-    <article className="max-w-measure">
-      <h1 className="font-display text-scale-4 md:text-scale-5 font-medium text-brand-fg">About</h1>
-
-        <section className="mt-space-8">
-          <p className="text-scale-4 text-brand-fg leading-normal">
-            I&apos;m a Principal Product Designer specializing in design systems. I lead
-            systems that scale: from AI-native foundations that cut time-to-market
-            by half to adoption that moves the needle (19% → 60%). I focus on
-            pragmatic, system-first language, data-informed decisions, and
-            cross-functional orchestration so design operates at scale—not just
-            looks consistent.
-          </p>
-        </section>
-
-        <section className="mt-space-10" aria-labelledby="philosophy-heading">
-          <h2 id="philosophy-heading" className="font-display text-scale-4 font-medium text-brand-fg">
-            Design philosophy
-          </h2>
-          <p className="mt-space-3 text-scale-3 text-brand-fg-muted leading-normal">
-            Design systems are about a pragmatic, system-first design language
-            that reduces cognitive load, prioritizes simplicity, and ensures
-            every decision strengthens the system&apos;s ecosystem. I focus on scalable
-            patterns, data-driven improvements, and empowering teams to contribute
-            while keeping the whole system cohesive.
-          </p>
-        </section>
-
-        <section className="mt-space-10" aria-labelledby="leadership-heading">
-          <h2 id="leadership-heading" className="font-display text-scale-4 font-medium text-brand-fg">
-            How I lead
-          </h2>
-          <p className="mt-space-3 text-scale-3 text-brand-fg-muted leading-normal">
-            I believe in clear ownership and responsibility through action, not
-            meetings. Ownership helps with task distribution and enables small
-            and large teams to flourish. We lean on each other for feedback and
-            support, but there&apos;s always a through-line of ownership to ensure
-            completeness, quality, and consistency.
-          </p>
-        </section>
-
-        <section className="mt-space-10" aria-labelledby="differentiation-heading">
-          <h2 id="differentiation-heading" className="font-display text-scale-4 font-medium text-brand-fg">
-            What sets me apart
-          </h2>
-          <ul className="mt-space-3 space-y-space-3">
-            {pillars.map((pillar) => (
-              <li key={pillar.slice(0, 30)} className="flex gap-space-2">
-                <span className="text-brand-accent shrink-0" aria-hidden>•</span>
-                <span className="text-scale-3 text-brand-fg-muted">{pillar}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-space-10">
-          <p className="text-scale-3 text-brand-fg-muted">
-            I write about design systems and AI-native product.{" "}
-            <Link
-              href="/writing"
-              className="text-brand-fg hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-opacity"
-            >
-              Writing →
-            </Link>
-          </p>
-        </section>
-
-      <div className="mt-space-12">
-        <a
-          href="/contact"
-          className="text-scale-3 text-brand-fg hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-opacity"
-        >
-          Contact
-        </a>
+    <div className="max-w-content grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-space-6 md:gap-x-space-8 gap-y-space-10 items-start">
+      <h1 className="font-display text-scale-4 md:text-scale-5 font-medium text-brand-fg md:row-start-1 md:col-start-1">
+        About
+      </h1>
+      <div
+        className="aspect-square w-[280px] min-w-[280px] md:w-[420px] md:min-w-[420px] rounded-lg overflow-hidden bg-brand-bg border border-brand-border flex items-center justify-center text-scale-2 text-brand-fg-muted md:row-start-2 md:col-start-1"
+        aria-hidden
+      >
+        {/* Placeholder: add public/images/headshot.jpg and use next/image for your header image */}
+        <span className="sr-only">Header image placeholder</span>
       </div>
-    </article>
+
+      <div className="min-w-0 max-w-[600px] flex flex-col gap-space-8 md:row-start-2 md:col-start-2">
+        <section aria-labelledby="bio-heading">
+          <h2
+            id="bio-heading"
+            className="font-display text-scale-4 font-medium text-brand-fg"
+          >
+            Hi, I&apos;m Liz!
+          </h2>
+          <div className="mt-space-3 space-y-space-4">
+            <p className="text-scale-3 text-brand-fg leading-normal">
+              I bring over 12 years of experience across interior and digital
+              product design, with a focus on design systems. Most recently, my
+              work has centered on leveraging AI within systems to challenge
+              traditional product development, helping teams move faster,
+              experiment more freely, and iterate confidently while maintaining
+              quality and consistency.
+            </p>
+            <p className="text-scale-3 text-brand-fg leading-normal">
+              No matter how deep I go into digital product, I always return to my
+              first passion: interior design. In my spare time, I write about
+              interiors, dabble in space planning drawings, and enjoy exploring
+              new tools shaping the industry. Outside of design, you&apos;ll find
+              me bouldering, trying new restaurants, reading a great thriller, or
+              spending time with our dog, Mango.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="open-to-roles-heading">
+          <h2
+            id="open-to-roles-heading"
+            className="font-display text-scale-4 font-medium text-brand-fg"
+          >
+            Open to roles
+          </h2>
+          <p className="mt-space-3 text-scale-3 text-brand-fg leading-normal">
+            I&apos;m open to roles where I can continue contributing hands-on,
+            both within and beyond design systems. I&apos;m especially drawn to
+            product design opportunities within the interiors, finance, and
+            sports industries.
+          </p>
+          <p className="mt-space-3 text-scale-3 text-brand-fg leading-normal">
+            If we sound like a great fit, please{" "}
+            <a
+              href="mailto:liz.m.brenner@gmail.com"
+              className="text-brand-accent hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded"
+            >
+              reach out
+            </a>
+            .
+          </p>
+        </section>
+      </div>
+    </div>
   );
 }
