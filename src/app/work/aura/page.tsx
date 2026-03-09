@@ -56,11 +56,11 @@ export default function AuraCaseStudyPage() {
       <section className="col-span-12 mt-space-16 grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="thesis-heading">
         <div className="max-w-measure">
           <h2 id="thesis-heading" className="font-display text-scale-4 font-medium text-brand-fg">
-            Redesigning How Design Decisions Are Produced.
+            Redesigning How Design Decisions Are Produced
           </h2>
-          <ul className="mt-space-4 space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-            <li>What is the one-sentence thesis? (How did we change the way design decisions are made, not just the outputs?)</li>
-          </ul>
+          <p className="mt-space-4 text-scale-3 text-brand-fg-muted">
+            One-sentence thesis: We shifted design from a manual, document-driven process into a machine-readable system where design decisions can be generated, validated, and implemented through AI-assisted workflows.
+          </p>
         </div>
         <figure>
           <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
@@ -78,14 +78,28 @@ export default function AuraCaseStudyPage() {
 
         {/* 5a. Inflection + bet (two-column) */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="l1-inflection-heading">
-          <div className="max-w-[28rem]">
+          <div className="max-w-measure">
             <h3 id="l1-inflection-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
               Inflection point & strategic bet
             </h3>
-            <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-              <li>What was the breaking point? When did &quot;the way we build&quot; stop scaling?</li>
-              <li>What did we bet on? (e.g. AI-native primitives, governance by default, token-first.)</li>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">Breaking point</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              Traditional design systems scaled consistency, but not decision velocity.
+              Designers still spent weeks producing artifacts while engineers manually translated them into code. As AI tools began generating interfaces directly from structured inputs, it became clear that static Figma libraries and documentation were no longer the right interface for building software.
+            </p>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">What we bet on</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-2">
+              We bet on an AI-native design system where design primitives are machine-readable and usable by both humans and AI agents.
+              Instead of designing individual screens, we invested in:
+            </p>
+            <ul className="space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside mb-space-2">
+              <li>tokens that encode design decisions</li>
+              <li>composable components with strict contracts</li>
+              <li>a registry AI tools can query and generate from</li>
             </ul>
+            <p className="text-scale-3 text-brand-fg-muted">
+              The goal was simple: if AI is building interfaces, the design system has to be something AI can actually understand.
+            </p>
           </div>
           <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
             <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Architecture: tokens → components → registry ]</span>
@@ -97,10 +111,25 @@ export default function AuraCaseStudyPage() {
           <h3 id="l1-arch-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
             System architecture shift
           </h3>
-          <ul className="max-w-measure space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside mb-space-4">
-            <li>How did the architecture change? (Tokens, components, registry, contracts—what moved and why?)</li>
-            <li>What constraints did we impose so the system stayed coherent?</li>
+          <p className="max-w-measure text-scale-3 text-brand-fg-muted mb-space-4">
+            The architecture moved from design artifacts → documentation → implementation to a shared source of truth between design, code, and AI tools.
+          </p>
+          <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">Key shifts included:</p>
+          <ul className="max-w-measure space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside mb-space-4">
+            <li><strong className="text-brand-fg">Tokens as the canonical design layer</strong> — Design decisions (color, spacing, typography, motion) became structured tokens rather than style guidelines.</li>
+            <li><strong className="text-brand-fg">Components as programmable contracts</strong> — Components define not just visuals but allowed states, behaviors, and composition rules, which AI tools can generate safely.</li>
+            <li><strong className="text-brand-fg">Registry-driven distribution</strong> — Instead of static libraries, the system exposes components through a registry so tools like Cursor or other AI builders can pull them directly.</li>
+            <li><strong className="text-brand-fg">Machine-readable constraints</strong> — We enforced constraints so generated UI stays coherent.</li>
           </ul>
+          <p className="max-w-measure text-scale-3 text-brand-fg-muted mb-space-2">For example:</p>
+          <ul className="max-w-measure space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside mb-space-4">
+            <li>tokens control styling boundaries</li>
+            <li>components expose limited variants</li>
+            <li>composition rules prevent invalid UI patterns</li>
+          </ul>
+          <p className="max-w-measure text-scale-3 text-brand-fg-muted mb-space-4">
+            These constraints are what allow AI to generate quickly without breaking consistency.
+          </p>
           <figure>
             <div className="relative w-full aspect-[2/1] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
               <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Full-width: architecture diagram ]</span>
@@ -114,11 +143,20 @@ export default function AuraCaseStudyPage() {
           <h3 id="l1-impact-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
             Impact & learnings
           </h3>
-          <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-            <li><strong className="text-brand-fg">Impact:</strong> What did we measure? What moved and by how much?</li>
-            <li><strong className="text-brand-fg">Learnings:</strong> Where did the system resist? What did we over- or under-invest in?</li>
-            <li><strong className="text-brand-fg">Next:</strong> Next lever to pull (e.g. governance, contribution model, AI surface area).</li>
-          </ul>
+          <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Impact</p>
+          <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+            Early internal prototypes showed dramatic speed improvements: design prototypes reduced from 3+ weeks to a few hours; production delivery reduced from 3+ months to ~6 weeks.
+            More importantly, teams shifted from designing screens to designing systems and primitives.
+          </p>
+          <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Learnings</p>
+          <p className="text-scale-3 text-brand-fg-muted mb-space-2">
+            The biggest resistance wasn&apos;t technical. It was mental. Designers had to move from crafting interfaces to authoring systems that generate interfaces.
+            We also learned that: under-specified tokens create chaos; overly flexible components break AI generation; constraints are what enable speed.
+          </p>
+          <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Next lever</p>
+          <p className="text-scale-3 text-brand-fg-muted">
+            Expanding the AI surface area of the system — exposing more structured metadata so AI tools can reason about layout, workflows, and domain-specific patterns.
+          </p>
         </aside>
       </div>
 
@@ -140,11 +178,32 @@ export default function AuraCaseStudyPage() {
             <h3 id="l2-context-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
               Inflection, bet & how AI changed workflows
             </h3>
-            <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-              <li>When did existing workflows become the bottleneck?</li>
-              <li>What did we bet on? (e.g. AI-assisted generation, machine-readable contracts.)</li>
-              <li>Where did AI enter the loop? What did humans keep owning vs. delegate?</li>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">Breaking point</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              Even with a strong design system, workflows still looked like: design → review → spec → engineering → implementation. The design artifact remained the bottleneck.
+            </p>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">What we bet on</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              We shifted toward AI-assisted interface generation using system primitives. Designers now guide AI tools using prompts, constraints, and system components rather than building everything manually.
+            </p>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">Where AI enters the loop</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-2">AI handles:</p>
+            <ul className="space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside mb-space-2">
+              <li>initial layout generation</li>
+              <li>component composition</li>
+              <li>repetitive interface scaffolding</li>
+              <li>rapid exploration of variations</li>
             </ul>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-2">Humans still own:</p>
+            <ul className="space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside">
+              <li>product intent</li>
+              <li>domain understanding</li>
+              <li>system rules</li>
+              <li>quality and judgment</li>
+            </ul>
+            <p className="text-scale-3 text-brand-fg-muted mt-space-4">
+              The role of design shifted from pixel production to system orchestration.
+            </p>
           </div>
         </section>
 
@@ -153,18 +212,14 @@ export default function AuraCaseStudyPage() {
           <h3 id="l2-beforeafter-heading" className="sr-only">Before vs after</h3>
           <div className="p-space-6 rounded-lg border border-brand-border bg-brand-bg-elevated/50">
             <p className="font-display text-scale-3 font-medium text-brand-fg mb-space-2">Before</p>
-            <ul className="space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside">
-              <li>[ Workflow state before ]</li>
-            </ul>
+            <p className="text-scale-3 text-brand-fg-muted">Design → prototype → handoff → engineering rebuilds UI</p>
             <div className="mt-space-4 aspect-[16/10] rounded bg-brand-fg-muted/10 flex items-center justify-center">
               <span className="text-scale-2 text-brand-fg-muted">[ Image ]</span>
             </div>
           </div>
           <div className="p-space-6 rounded-lg border border-brand-border bg-brand-bg-elevated/50">
             <p className="font-display text-scale-3 font-medium text-brand-fg mb-space-2">After</p>
-            <ul className="space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside">
-              <li>[ Workflow state after ]</li>
-            </ul>
+            <p className="text-scale-3 text-brand-fg-muted">Prompt → AI generates UI using system components → designer refines → production</p>
             <div className="mt-space-4 aspect-[16/10] rounded bg-brand-fg-muted/10 flex items-center justify-center">
               <span className="text-scale-2 text-brand-fg-muted">[ Image ]</span>
             </div>
@@ -177,11 +232,18 @@ export default function AuraCaseStudyPage() {
             <h3 id="l2-impact-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
               Impact & learnings
             </h3>
-            <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-              <li>How did cycle time or throughput change?</li>
-              <li>Where did workflows break or push back? Human–AI collaboration learnings?</li>
-              <li>Next workflow to redesign or automate?</li>
-            </ul>
+            <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Impact</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              Cycle time for interface exploration dropped dramatically. Designers can now explore orders of magnitude more interface variations in the same time. Engineering teams receive UI that already aligns with the component system.
+            </p>
+            <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Learnings</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              AI is excellent at generation, but poor at judgment. The key insight was that AI doesn&apos;t replace systems — it depends on them. Without strict tokens and components, generated interfaces degrade quickly.
+            </p>
+            <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Next workflow to redesign</p>
+            <p className="text-scale-3 text-brand-fg-muted">
+              Moving beyond UI generation toward AI-assisted workflow design, where AI can generate entire application flows using domain-specific patterns.
+            </p>
           </div>
           <div className="relative w-full aspect-[2/1] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
             <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Workflow redesign: tool UI, pipeline, or impact ]</span>
@@ -197,15 +259,28 @@ export default function AuraCaseStudyPage() {
 
         {/* 7a. Inflection + bet + architecture support (two-column) */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="l3-context-heading">
-          <div className="max-w-[28rem]">
+          <div className="max-w-measure">
             <h3 id="l3-context-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
               Inflection, bet & how architecture supported the org
             </h3>
-            <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-              <li>When did structure (ownership, governance, contribution) become the constraint?</li>
-              <li>What did we bet on? (e.g. ownership through action, governance by default.)</li>
-              <li>How did tokens, contracts, and pipelines reduce central gatekeeping? What leverage did we create?</li>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">Breaking point</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              Traditional design systems centralize authority. Every change flows through a small core team, which eventually becomes a bottleneck. As the system grew, governance slowed adoption and contributions.
+            </p>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">What we bet on</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+              We moved toward governance through structure rather than review. Instead of controlling contributions manually, we encoded rules into the system itself. Tokens, component contracts, and pipelines act as guardrails. If something passes the system constraints, it can ship.
+            </p>
+            <p className="text-scale-3 text-brand-fg-muted font-medium text-brand-fg/90 mb-space-2">How architecture reduced gatekeeping</p>
+            <p className="text-scale-3 text-brand-fg-muted mb-space-2">The architecture enabled a more distributed model:</p>
+            <ul className="space-y-space-1 text-scale-3 text-brand-fg-muted list-disc list-inside mb-space-2">
+              <li>tokens enforce visual consistency automatically</li>
+              <li>component contracts enforce correct usage</li>
+              <li>registry pipelines validate contributions</li>
             </ul>
+            <p className="text-scale-3 text-brand-fg-muted">
+              This allowed teams to contribute safely without heavy central approval. The system creates leverage for the design team — instead of policing consistency, we focus on evolving the primitives.
+            </p>
           </div>
           <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
             <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Org: governance model, contribution, or adoption ]</span>
@@ -217,11 +292,18 @@ export default function AuraCaseStudyPage() {
           <h3 id="l3-impact-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
             Impact & learnings
           </h3>
-          <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-            <li><strong className="text-brand-fg">Impact:</strong> Adoption, contribution rate, time to first contribution—what moved?</li>
-            <li><strong className="text-brand-fg">Learnings:</strong> Where did governance or ownership create friction? Over-centralize or under-specify?</li>
-            <li><strong className="text-brand-fg">Next:</strong> Next organizational lever (contribution model, ownership boundaries).</li>
-          </ul>
+          <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Impact</p>
+          <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+            Faster adoption across teams; lower barrier to contribution; reduced dependency on the core design system team. The design system became a platform rather than a library.
+          </p>
+          <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Learnings</p>
+          <p className="text-scale-3 text-brand-fg-muted mb-space-4">
+            Governance cannot be purely technical. Clear ownership and contribution guidelines are still necessary. Systems create leverage, but people still create alignment.
+          </p>
+          <p className="text-scale-3 text-brand-fg font-medium mb-space-1">Next organizational lever</p>
+          <p className="text-scale-3 text-brand-fg-muted">
+            Evolving toward AI-assisted contribution models, where AI helps teams propose components, patterns, or tokens that fit within the system automatically.
+          </p>
         </aside>
 
         {/* 7c. Closing visual (full-width) */}
