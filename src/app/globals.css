@@ -37,39 +37,53 @@
   /* Colors — system-inspired minimal */
   --color-fg: #1a1a1a;
   --color-fg-muted: #5c5c5c;
-  --color-bg: #fafafa;
+  --color-bg: #f4f3ee;
   --color-bg-elevated: #ffffff;
   --color-border: #e5e5e5;
   --color-accent: #2563eb;
+  --color-highlight: #FF4500;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-fg: #f5f5f5;
     --color-fg-muted: #a3a3a3;
-    --color-bg: #0a0a0a;
+    --color-bg: #121212;
     --color-bg-elevated: #171717;
     --color-border: #262626;
     --color-accent: #3b82f6;
+    --color-highlight: #FF6F61;
   }
 }
 
 [data-theme="light"] {
   --color-fg: #1a1a1a;
   --color-fg-muted: #5c5c5c;
-  --color-bg: #fafafa;
+  --color-bg: #f4f3ee;
   --color-bg-elevated: #ffffff;
   --color-border: #e5e5e5;
   --color-accent: #2563eb;
+  --color-highlight: #FF4500;
 }
 
 [data-theme="dark"] {
   --color-fg: #f5f5f5;
   --color-fg-muted: #a3a3a3;
-  --color-bg: #0a0a0a;
+  --color-bg: #121212;
   --color-bg-elevated: #171717;
   --color-border: #262626;
   --color-accent: #3b82f6;
+  --color-highlight: #FF6F61;
+}
+
+/* Highlight color utilities — ensure they apply in light/dark (var resolves at runtime) */
+@layer components {
+  .bg-brand-highlight {
+    background-color: var(--color-highlight);
+  }
+  .border-brand-highlight {
+    border-color: var(--color-highlight);
+  }
 }
 
 @layer base {

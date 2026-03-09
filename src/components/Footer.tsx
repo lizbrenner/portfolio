@@ -35,7 +35,10 @@ export function Footer() {
       role="contentinfo"
     >
       <div className="flex flex-wrap items-center justify-between gap-x-space-6 gap-y-space-4 text-scale-2 text-brand-fg-muted">
-        <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-x-space-6 gap-y-space-2">
+        <p className="shrink-0 text-scale-2">
+          Vibe coded with Cursor | Copyright 2026
+        </p>
+        <nav aria-label="Footer navigation and contact" className="flex flex-wrap items-center gap-x-space-6 gap-y-space-2">
           {footerLinks.map((item) => (
             <Link
               key={item.href}
@@ -45,25 +48,26 @@ export function Footer() {
               {item.label}
             </Link>
           ))}
-        </nav>
-        <nav aria-label="Social and contact" className="flex items-center gap-space-4">
-          {socialLinks.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                {...(item.external && {
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                })}
-                className="text-brand-fg-muted hover:text-brand-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-colors"
-                aria-label={item.label}
-              >
-                <Icon size={24} stroke={1.5} aria-hidden />
-              </a>
-            );
-          })}
+          <span className="h-4 w-px bg-brand-border" aria-hidden />
+          <div className="flex items-center gap-space-4">
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  {...(item.external && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
+                  className="text-brand-fg-muted hover:text-brand-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-colors"
+                  aria-label={item.label}
+                >
+                  <Icon size={24} stroke={1.5} aria-hidden />
+                </a>
+              );
+            })}
+          </div>
         </nav>
       </div>
     </footer>

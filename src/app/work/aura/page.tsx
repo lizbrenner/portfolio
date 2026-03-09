@@ -1,55 +1,58 @@
-import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const CaseStudyFooter = dynamic(
+  () => import("@/components/CaseStudyFooter").then((m) => ({ default: m.CaseStudyFooter })),
+  { ssr: false }
+);
 
 export default function AuraCaseStudyPage() {
   return (
     <article className="grid grid-cols-12 gap-x-4 md:gap-x-6">
       {/* 1. Hero strip: title + role/scope line */}
-      <header className="col-span-12 max-w-measure mb-space-6">
-        <p className="text-scale-2 text-brand-fg-muted">Case study</p>
-        <h1 className="font-display mt-space-2 text-scale-5 font-medium text-brand-fg">
+      <header className="col-span-12 max-w-measure mb-space-6 text-brand-fg">
+        <p className="text-scale-2">Case study</p>
+        <h1 className="font-display mt-space-2 text-scale-5 font-medium">
           Aura — AI-native design system
         </h1>
-        <p className="mt-space-2 text-scale-3 text-brand-fg-muted">
+        <p className="mt-space-2 text-scale-3 opacity-90">
           Principal design lead | AI-native system transformation | Org-wide impact
         </p>
       </header>
 
-      {/* 2. Impact metrics strip */}
-      <div className="col-span-12 py-space-6 border-y border-brand-border">
-        <div className="flex flex-wrap gap-space-4 max-w-content">
-          <span className="px-space-4 py-space-2 rounded-lg bg-brand-bg-elevated border border-brand-border text-scale-2 text-brand-fg-muted">
-            [ Time to market ]
-          </span>
-          <span className="px-space-4 py-space-2 rounded-lg bg-brand-bg-elevated border border-brand-border text-scale-2 text-brand-fg-muted">
-            [ Adoption % ]
-          </span>
-          <span className="px-space-4 py-space-2 rounded-lg bg-brand-bg-elevated border border-brand-border text-scale-2 text-brand-fg-muted">
-            [ Quality / SUS ]
-          </span>
-          <span className="px-space-4 py-space-2 rounded-lg bg-brand-bg-elevated border border-brand-border text-scale-2 text-brand-fg-muted">
-            [ Scope ]
-          </span>
-        </div>
-      </div>
-
-      {/* 3. TL;DR */}
+      {/* 2. TL;DR — 3 columns × 2 rows */}
       <section className="col-span-12 mt-space-12" aria-labelledby="tldr-heading">
-        <div className="max-w-measure bg-brand-bg-elevated border border-brand-border rounded-lg p-space-6">
-          <h2 id="tldr-heading" className="font-display text-scale-4 font-medium text-brand-fg mb-space-4">
-            TL;DR
-          </h2>
-          <ul className="space-y-space-2 text-scale-3 text-brand-fg-muted list-disc list-inside">
-            <li>One-line impact summary</li>
-            <li>Scope (teams / surface area)</li>
-            <li>Strategic bet in 5 words</li>
-            <li>Key constraint we imposed</li>
-            <li>Outcome in numbers</li>
-            <li>What we&apos;d do next</li>
-          </ul>
+        <h2 id="tldr-heading" className="font-display text-scale-4 font-medium text-brand-fg mb-space-6">
+          TL;DR
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
+            <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">One-line impact summary</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">Aura is an AI-native design system that dramatically accelerates product development while ensuring consistent, high-quality user experiences across Cognite applications.</p>
+          </div>
+          <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
+            <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">Scope (teams / surface area)</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">Used across Cognite product teams for internal applications and partner-built solutions.</p>
+          </div>
+          <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
+            <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">Strategic bet in 5 words</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">AI-native system for faster product development lifecycle.</p>
+          </div>
+          <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
+            <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">Key constraint we imposed</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">Rebuild the design system for an AI-native future while maintaining production parity and risk approval so every internal application could migrate within six months.</p>
+          </div>
+          <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
+            <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">Outcome in numbers</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">Design prototypes dropped from 3+ weeks to ~3 hours, and production application delivery decreased from 3+ months to 6 weeks.</p>
+          </div>
+          <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
+            <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">What we&apos;d do next</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">Expand Aura&apos;s component registry, deepen AI tooling integration, with agent automations and improve governance based on feedback.</p>
+          </div>
         </div>
       </section>
 
-      {/* 4. Thesis + hero (two-column) */}
+      {/* 3. Thesis + hero (two-column) */}
       <section className="col-span-12 mt-space-16 grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="thesis-heading">
         <div className="max-w-measure">
           <h2 id="thesis-heading" className="font-display text-scale-4 font-medium text-brand-fg">
@@ -107,7 +110,7 @@ export default function AuraCaseStudyPage() {
         </section>
 
         {/* 5c. Impact + learnings (callout) */}
-        <aside className="max-w-measure border-l-4 border-brand-accent pl-space-6 py-space-4 bg-brand-bg-elevated/30 rounded-r-lg" aria-labelledby="l1-impact-heading">
+        <aside className="max-w-measure border-l-4 border-brand-highlight pl-space-6 py-space-4 bg-brand-bg-elevated/30 rounded-r-lg" aria-labelledby="l1-impact-heading">
           <h3 id="l1-impact-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
             Impact & learnings
           </h3>
@@ -210,7 +213,7 @@ export default function AuraCaseStudyPage() {
         </section>
 
         {/* 7b. Impact + learnings (callout) */}
-        <aside className="max-w-measure border-l-4 border-brand-accent pl-space-6 py-space-4 bg-brand-bg-elevated/30 rounded-r-lg" aria-labelledby="l3-impact-heading">
+        <aside className="max-w-measure border-l-4 border-brand-highlight pl-space-6 py-space-4 bg-brand-bg-elevated/30 rounded-r-lg" aria-labelledby="l3-impact-heading">
           <h3 id="l3-impact-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
             Impact & learnings
           </h3>
@@ -230,14 +233,7 @@ export default function AuraCaseStudyPage() {
         </figure>
       </div>
 
-      <footer className="col-span-12 mt-space-16 pt-space-8 border-t border-brand-border">
-        <Link
-          href="/"
-          className="text-scale-3 text-brand-accent hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded"
-        >
-          ← Back to work
-        </Link>
-      </footer>
+      <CaseStudyFooter />
     </article>
   );
 }

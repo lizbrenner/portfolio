@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque } from "next/font/google";
-import { Agentation } from "agentation";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -33,7 +32,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('portfolio-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);else document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();`,
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);else document.documentElement.setAttribute('data-theme',typeof window!=='undefined'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`,
           }}
         />
       </head>
@@ -47,10 +46,12 @@ export default function RootLayout({
           </a>
           <div className="flex flex-col min-h-screen max-w-content mx-auto w-full px-space-4 md:px-space-8">
             <Header />
-            <main id="main-content" className="flex-1 pt-space-2" tabIndex={-1}>{children}</main>
+            <main id="main-content" className="flex-1 min-h-0 pt-space-2" tabIndex={-1}>
+              {children}
+            </main>
             <Footer />
           </div>
-          {process.env.NODE_ENV === "development" && <Agentation />}
+          {/* Agentation removed — was causing manifest/JSON parse errors with Next.js dev server */}
         </>
       </body>
     </html>

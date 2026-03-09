@@ -35,24 +35,13 @@ export function ThemeSwitcher() {
     localStorage.setItem(THEME_KEY, next);
   }
 
-  if (!mounted) {
-    return (
-      <span
-        className="inline-flex h-9 w-9 items-center justify-center rounded text-brand-fg-muted"
-        aria-hidden
-      >
-        <IconSunFilled size={22} stroke={1.5} />
-      </span>
-    );
-  }
-
   const isDark = theme === "dark";
 
   return (
     <button
       type="button"
-      onClick={toggle}
-      className="flex items-center justify-center rounded p-1 text-brand-fg hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 transition-opacity"
+      onClick={mounted ? toggle : undefined}
+      className="flex items-center justify-center rounded p-1 text-brand-fg bg-brand-border/40 hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 transition-opacity h-9 w-9"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (

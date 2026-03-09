@@ -20,7 +20,7 @@ export function Header() {
           href="/"
           className="font-display text-scale-4 font-medium text-brand-fg hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-opacity"
         >
-          Liz Brenner — design portfolio
+          Liz Brenner
         </Link>
         <div className="flex items-center gap-space-6 md:gap-space-8">
           <ul className="flex items-center gap-space-6 md:gap-space-8">

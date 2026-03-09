@@ -1,6 +1,10 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  safelist: [
+    "bg-brand-highlight",
+    "border-brand-highlight",
+  ],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,6 +20,7 @@ const config: Config = {
           "bg-elevated": "var(--color-bg-elevated)",
           border: "var(--color-border)",
           accent: "var(--color-accent)",
+          highlight: "var(--color-highlight)",
         },
       },
       fontFamily: {
