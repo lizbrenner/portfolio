@@ -283,40 +283,49 @@ function CaseStudyCard({
 
   const imageContainerClass =
     variant === "carousel"
-      ? "relative w-full aspect-video rounded-lg overflow-hidden bg-brand-fg-muted/10 flex-shrink-0"
-      : "relative w-full aspect-video rounded-lg overflow-hidden bg-brand-fg-muted/10 flex-shrink-0";
+      ? "absolute inset-0 overflow-hidden rounded-lg bg-brand-fg-muted/10"
+      : "absolute inset-0 overflow-hidden rounded-lg bg-brand-fg-muted/10";
+
+  const contentWrapperClass =
+    variant === "carousel"
+      ? "relative h-full w-full"
+      : "relative w-full aspect-video";
 
   const cardContent = (
-    <>
+    <div className={contentWrapperClass}>
       <div className={imageContainerClass}>
-        {imageEl}
+        <div className="case-study-card-image-inner absolute inset-0">
+          {imageEl}
+        </div>
       </div>
-      <div className="px-space-4 pt-space-3 pb-space-3 flex flex-col flex-shrink-0">
-        <h3 className="font-display text-scale-4 md:text-scale-5 font-medium text-brand-fg">
+      {/* Title: right of card, middle-aligned, overlapping; "see project" swoops in on hover */}
+      <div className="case-study-card-text-wrap absolute right-0 top-1/2 flex w-[55%] max-w-[420px] -translate-y-1/2 flex-col items-end justify-center pr-space-2 text-right">
+        <h3 className="case-study-card-title font-display text-[48px] font-bold leading-tight text-brand-fg drop-shadow-md">
           {item.title}
         </h3>
-        <p className="mt-space-1 text-scale-3 text-brand-fg-muted line-clamp-2">{item.description}</p>
         {!item.placeholder && (
-          <span className="mt-space-2 inline-block text-scale-2 text-brand-accent">
-            View case study →
+          <span className="case-study-card-see-project mt-space-4 block font-display text-[32px] font-bold uppercase leading-tight text-brand-fg drop-shadow-md">
+            see project implement this exactly
           </span>
         )}
       </div>
-    </>
+    </div>
   );
 
   const cardClass =
-    "flex flex-col rounded-lg overflow-hidden bg-brand-bg-elevated border-2 border-brand-border transition-all case-study-card-glow flex-shrink-0";
+    variant === "carousel"
+      ? "flex flex-col rounded-lg overflow-hidden bg-brand-bg-elevated border-2 border-brand-border transition-all case-study-card-glow case-study-card-carousel flex-shrink-0"
+      : "flex flex-col rounded-lg overflow-hidden bg-brand-bg-elevated border-2 border-brand-border transition-all case-study-card-glow flex-shrink-0";
 
   if (variant === "stacked") {
     return (
       <article className={cardClass + " w-full"}>
         {item.placeholder ? (
-          <div className="block">{cardContent}</div>
+          <div className="block h-full w-full">{cardContent}</div>
         ) : (
           <Link
             href={item.href}
-            className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded-lg"
+            className="block h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded-lg"
           >
             {cardContent}
           </Link>
@@ -327,7 +336,11 @@ function CaseStudyCard({
 
   const carouselCardSize =
     variant === "carousel"
-      ? { width: `min(${cardWidthVw}vw, 900px)` }
+      ? {
+          width: `min(${cardWidthVw}vw, 900px)`,
+          height: "560px",
+          minHeight: "560px",
+        }
       : undefined;
 
   return (
@@ -337,11 +350,11 @@ function CaseStudyCard({
       style={{ ...carouselCardSize, ...style }}
     >
       {item.placeholder ? (
-        <div className="block">{cardContent}</div>
+        <div className="block h-full w-full">{cardContent}</div>
       ) : (
         <Link
           href={item.href}
-          className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded-lg"
+          className="block h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded-lg"
         >
           {cardContent}
         </Link>

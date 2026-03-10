@@ -110,26 +110,36 @@
   outline-offset: 2px;
 }
 
-/* Case study card hover: 6px gradient border drawn outside to avoid layout shift */
-.case-study-card-glow {
-  position: relative;
+/* Case study cards: image zoom, title scale, "see project" swoop-in from bottom */
+.case-study-card-carousel {
   overflow: visible;
 }
-.case-study-card-glow::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  z-index: -1;
-  border-radius: 14px; /* rounded-lg (8px) + 6px */
-  background: linear-gradient(135deg, #f9a8d4, #fdba74);
+.case-study-card-carousel .case-study-card-text-wrap {
+  right: -12px;
+}
+.case-study-card-image-inner {
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+.case-study-card-title {
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+.case-study-card-see-project {
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transform: translateY(1.25rem);
+  transition: opacity 0.3s ease-out, transform 0.35s ease-out;
+  will-change: transform, opacity;
 }
-.case-study-card-glow:hover {
-  border-color: transparent;
+.case-study-card-glow:hover .case-study-card-image-inner {
+  transform: scale(1.05);
 }
-.case-study-card-glow:hover::before {
+.case-study-card-glow:hover .case-study-card-title {
+  transform: scale(1.12);
+}
+.case-study-card-glow:hover .case-study-card-see-project {
   opacity: 1;
+  transform: translateY(0);
 }
 
 /* Theme-aware case study cover images: light for light mode, dark for dark mode */
