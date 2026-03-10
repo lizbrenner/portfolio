@@ -4,7 +4,7 @@ A Next.js portfolio for a Principal-level Product Designer specializing in desig
 
 ## Stack
 
-- **Next.js 14** (App Router)
+- **Next.js 16** (App Router, Turbopack)
 - **TypeScript**
 - **Tailwind CSS** with custom design tokens (space, type scale, colors)
 - **Deploy:** Vercel (recommended)
@@ -41,3 +41,7 @@ npm start
 - **Contact:** Email and short line; add Calendly if desired.
 
 Replace `hello@example.com` on the Contact page with your email.
+
+## Notes
+
+- **Agentation (local dev):** The annotation toolbar is available when running `npm run dev`. It’s in devDependencies and loaded only on the client via `AgentationLoader` (dynamic import with ssr: false), so the server never bundles it. For MCP/agent sync, see [agentation.dev/install](https://agentation.dev/install).

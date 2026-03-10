@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from "next/dynamic";
 
 const CaseStudyFooter = dynamic(
@@ -43,7 +45,7 @@ export default function AuraCaseStudyPage() {
           </div>
           <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
             <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">Outcome in numbers</p>
-            <p className="text-scale-3 text-brand-fg-muted flex-1">Design prototypes dropped from 3+ weeks to ~3 hours, and production application delivery decreased from 3+ months to 6 weeks.</p>
+            <p className="text-scale-3 text-brand-fg-muted flex-1">Design prototypes went from taking ~3 weeks to ~3 hours, and production application delivery reduced from a ~3 month to ~6 week timeline.</p>
           </div>
           <div className="rounded-lg border border-brand-border bg-brand-bg-elevated/50 p-space-5 flex flex-col">
             <p className="font-display text-scale-2 font-medium text-brand-fg mb-space-2">What we&apos;d do next</p>
@@ -52,8 +54,14 @@ export default function AuraCaseStudyPage() {
         </div>
       </section>
 
-      {/* 3. Thesis + hero (two-column) */}
-      <section className="col-span-12 mt-space-16 grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="thesis-heading">
+      {/* 3. Thesis + hero (photo stacked on top, full width) */}
+      <section className="col-span-12 mt-space-16 flex flex-col gap-y-space-6" aria-labelledby="thesis-heading">
+        <figure className="w-full">
+          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
+            <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Hero: Aura in context — product or system overview ]</span>
+          </div>
+          <figcaption className="sr-only">Placeholder for hero or system overview image</figcaption>
+        </figure>
         <div className="max-w-measure">
           <h2 id="thesis-heading" className="font-display text-scale-4 font-medium text-brand-fg">
             Redesigning How Design Decisions Are Produced
@@ -62,12 +70,6 @@ export default function AuraCaseStudyPage() {
             One-sentence thesis: We shifted design from a manual, document-driven process into a machine-readable system where design decisions can be generated, validated, and implemented through AI-assisted workflows.
           </p>
         </div>
-        <figure>
-          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
-            <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Hero: Aura in context — product or system overview ]</span>
-          </div>
-          <figcaption className="sr-only">Placeholder for hero or system overview image</figcaption>
-        </figure>
       </section>
 
       {/* 5. Lens 1: System redesign */}
@@ -76,8 +78,11 @@ export default function AuraCaseStudyPage() {
           Lens 1: System redesign
         </h2>
 
-        {/* 5a. Inflection + bet (two-column) */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="l1-inflection-heading">
+        {/* 5a. Inflection + bet (photo stacked on top, full width) */}
+        <section className="flex flex-col gap-y-space-6" aria-labelledby="l1-inflection-heading">
+          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
+            <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Architecture: tokens → components → registry ]</span>
+          </div>
           <div className="max-w-measure">
             <h3 id="l1-inflection-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
               Inflection point & strategic bet
@@ -100,9 +105,6 @@ export default function AuraCaseStudyPage() {
             <p className="text-scale-3 text-brand-fg-muted">
               The goal was simple: if AI is building interfaces, the design system has to be something AI can actually understand.
             </p>
-          </div>
-          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
-            <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Architecture: tokens → components → registry ]</span>
           </div>
         </section>
 
@@ -257,8 +259,11 @@ export default function AuraCaseStudyPage() {
           Lens 3: Organizational redesign
         </h2>
 
-        {/* 7a. Inflection + bet + architecture support (two-column) */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-space-6" aria-labelledby="l3-context-heading">
+        {/* 7a. Inflection + bet + architecture support (photo stacked on top, full width) */}
+        <section className="flex flex-col gap-y-space-6" aria-labelledby="l3-context-heading">
+          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
+            <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Org: governance model, contribution, or adoption ]</span>
+          </div>
           <div className="max-w-measure">
             <h3 id="l3-context-heading" className="font-display text-scale-3 font-medium text-brand-fg mb-space-3">
               Inflection, bet & how architecture supported the org
@@ -281,9 +286,6 @@ export default function AuraCaseStudyPage() {
             <p className="text-scale-3 text-brand-fg-muted">
               This allowed teams to contribute safely without heavy central approval. The system creates leverage for the design team — instead of policing consistency, we focus on evolving the primitives.
             </p>
-          </div>
-          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-brand-fg-muted/10 flex items-center justify-center border border-brand-border">
-            <span className="text-scale-2 text-brand-fg-muted text-center px-space-4">[ Org: governance model, contribution, or adoption ]</span>
           </div>
         </section>
 

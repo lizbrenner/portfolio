@@ -29,6 +29,7 @@ export function ThemeSwitcher() {
   }, []);
 
   function toggle() {
+    if (!mounted) return;
     const next: Theme = theme === "light" ? "dark" : "light";
     setTheme(next);
     applyTheme(next);
@@ -40,8 +41,9 @@ export function ThemeSwitcher() {
   return (
     <button
       type="button"
-      onClick={mounted ? toggle : undefined}
-      className="flex items-center justify-center rounded p-1 text-brand-fg bg-brand-border/40 hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 transition-opacity h-9 w-9"
+      onClick={toggle}
+      disabled={!mounted}
+      className="flex items-center justify-center rounded p-1 text-brand-fg bg-brand-border/40 hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 transition-opacity h-9 w-9 disabled:opacity-70 disabled:cursor-not-allowed"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (

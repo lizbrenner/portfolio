@@ -4,6 +4,14 @@ const config: Config = {
   safelist: [
     "bg-brand-highlight",
     "border-brand-highlight",
+    "bg-brand-bg",
+    "text-brand-fg",
+    "font-sans",
+    "min-h-screen",
+    "max-w-content",
+    "px-space-4",
+    "md:px-space-8",
+    "pt-space-2",
   ],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",

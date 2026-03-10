@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { AgentationLoader } from "@/components/AgentationLoader";
+import { AgentationErrorBoundary } from "@/components/AgentationErrorBoundary";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,7 +53,9 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
-          {/* Agentation removed — was causing manifest/JSON parse errors with Next.js dev server */}
+          <AgentationErrorBoundary>
+            <AgentationLoader />
+          </AgentationErrorBoundary>
         </>
       </body>
     </html>

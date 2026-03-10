@@ -18,7 +18,7 @@ export function Header() {
       >
         <Link
           href="/"
-          className="font-display text-scale-4 font-medium text-brand-fg hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-opacity"
+          className="font-display text-scale-3 text-brand-fg hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded transition-opacity"
         >
           Liz Brenner
         </Link>
