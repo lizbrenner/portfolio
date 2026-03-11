@@ -26,7 +26,7 @@ type WorkItem =
 const work: WorkItem[] = [
   {
     slug: "aura",
-    title: "Aura",
+    title: "Aura: AI native design system",
     context: "Cognite",
     description: "AI-native design system that cut time to market from 3+ months to 6 weeks",
     imageLight: "/images/aura-cover-light.png",

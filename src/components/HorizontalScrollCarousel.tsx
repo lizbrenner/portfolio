@@ -201,6 +201,8 @@ interface CaseStudyCardProps {
   viewportWidthRef?: React.RefObject<number>;
 }
 
+const HOVER_LEAVE_DELAY_MS = 180;
+
 function CaseStudyCard({
   item,
   variant,
@@ -209,6 +211,28 @@ function CaseStudyCard({
   viewportWidthRef,
 }: CaseStudyCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = useCallback(() => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    setIsHovered(true);
+  }, []);
+  const handleMouseLeave = useCallback(() => {
+    leaveTimeoutRef.current = setTimeout(() => {
+      leaveTimeoutRef.current = null;
+      setIsHovered(false);
+    }, HOVER_LEAVE_DELAY_MS);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+    };
+  }, []);
 
   // Optional: subtle scale/opacity when card is near center (carousel only)
   const [style, setStyle] = useState<React.CSSProperties>({});
@@ -293,33 +317,41 @@ function CaseStudyCard({
 
   const cardContent = (
     <div className={contentWrapperClass}>
-      <div className={imageContainerClass}>
+      <div className={`${imageContainerClass} z-0`}>
         <div className="case-study-card-image-inner absolute inset-0">
           {imageEl}
         </div>
+        <div className="case-study-card-overlay pointer-events-none absolute inset-0 rounded-lg" aria-hidden />
       </div>
-      {/* Title: right of card, middle-aligned, overlapping; "see project" swoops in on hover */}
-      <div className="case-study-card-text-wrap absolute right-0 top-1/2 flex w-[55%] max-w-[420px] -translate-y-1/2 flex-col items-end justify-center pr-space-2 text-right">
-        <h3 className="case-study-card-title font-display text-[48px] font-bold leading-tight text-brand-fg drop-shadow-md">
+      {/* Text on top of image so it isn’t cut off */}
+      <div className="case-study-card-text-wrap absolute bottom-0 left-0 z-10 flex w-full max-w-[90%] flex-col items-start justify-end gap-2 pb-6 pl-6 text-left sm:pb-8 sm:pl-8">
+        <h3 className="case-study-card-title font-display text-[48px] font-bold leading-tight text-brand-fg">
           {item.title}
         </h3>
-        {!item.placeholder && (
-          <span className="case-study-card-see-project mt-space-4 block font-display text-[32px] font-bold uppercase leading-tight text-brand-fg drop-shadow-md">
-            see project implement this exactly
-          </span>
-        )}
+        <p className="case-study-card-desc line-clamp-2">
+          {item.description}
+        </p>
       </div>
     </div>
   );
 
-  const cardClass =
+  const articleClass =
     variant === "carousel"
-      ? "flex flex-col rounded-lg overflow-hidden bg-brand-bg-elevated border-2 border-brand-border transition-all case-study-card-glow case-study-card-carousel flex-shrink-0"
-      : "flex flex-col rounded-lg overflow-hidden bg-brand-bg-elevated border-2 border-brand-border transition-all case-study-card-glow flex-shrink-0";
+      ? "flex flex-col rounded-lg overflow-visible bg-brand-bg-elevated transition-all case-study-card-carousel flex-shrink-0"
+      : "flex flex-col rounded-lg overflow-visible bg-brand-bg-elevated transition-all flex-shrink-0";
+
+  const hoverWrapClass =
+    variant === "carousel"
+      ? "case-study-card-glow relative min-h-full w-full pb-[120px]"
+      : "case-study-card-glow relative w-full";
 
   if (variant === "stacked") {
     return (
-      <article className={cardClass + " w-full"}>
+      <article
+        className={`${articleClass} w-full case-study-card-glow${isHovered ? " is-hovered" : ""}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {item.placeholder ? (
           <div className="block h-full w-full">{cardContent}</div>
         ) : (
@@ -346,18 +378,24 @@ function CaseStudyCard({
   return (
     <article
       ref={cardRef}
-      className={cardClass}
+      className={articleClass}
       style={{ ...carouselCardSize, ...style }}
     >
       {item.placeholder ? (
         <div className="block h-full w-full">{cardContent}</div>
       ) : (
-        <Link
-          href={item.href}
-          className="block h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded-lg"
+        <div
+          className={`${hoverWrapClass}${isHovered ? " is-hovered" : ""}`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {cardContent}
-        </Link>
+          <Link
+            href={item.href}
+            className="block h-[560px] w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-2 rounded-lg"
+          >
+            {cardContent}
+          </Link>
+        </div>
       )}
     </article>
   );

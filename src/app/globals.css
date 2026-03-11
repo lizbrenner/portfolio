@@ -37,18 +37,23 @@
   /* Colors — system-inspired minimal */
   --color-fg: #1a1a1a;
   --color-fg-muted: #5c5c5c;
+  --color-card-desc: #454545;
+  --color-card-overlay: #ffffff;
   --color-bg: #f4f3ee;
   --color-bg-elevated: #ffffff;
   --color-border: #e5e5e5;
   --color-timeline-line: #d4d4d4;
   --color-accent: #2563eb;
   --color-highlight: #FF4500;
+  --card-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-fg: #f5f5f5;
     --color-fg-muted: #a3a3a3;
+    --color-card-desc: #c2c2c2;
+    --color-card-overlay: #000000;
     --color-bg: #1F1E1E;
     --color-bg-elevated: #171717;
     --color-border: #262626;
@@ -61,6 +66,8 @@
 [data-theme="light"] {
   --color-fg: #1a1a1a;
   --color-fg-muted: #5c5c5c;
+  --color-card-desc: #454545;
+  --color-card-overlay: #ffffff;
   --color-bg: #f4f3ee;
   --color-bg-elevated: #ffffff;
   --color-border: #e5e5e5;
@@ -72,6 +79,8 @@
 [data-theme="dark"] {
   --color-fg: #f5f5f5;
   --color-fg-muted: #a3a3a3;
+  --color-card-desc: #c2c2c2;
+  --color-card-overlay: #000000;
   --color-bg: #1F1E1E;
   --color-bg-elevated: #171717;
   --color-border: #262626;
@@ -110,36 +119,65 @@
   outline-offset: 2px;
 }
 
-/* Case study cards: image zoom, title scale, "see project" swoop-in from bottom */
-.case-study-card-carousel {
-  overflow: visible;
-}
-.case-study-card-carousel .case-study-card-text-wrap {
-  right: -12px;
-}
+/* Case study cards: smooth vertical text swap — single easing curve for consistency */
 .case-study-card-image-inner {
-  transition: transform 0.25s ease-out;
+  transition: transform 0.6s var(--card-ease);
   will-change: transform;
 }
-.case-study-card-title {
-  transition: transform 0.25s ease-out;
-  will-change: transform;
-}
-.case-study-card-see-project {
+.case-study-card-overlay {
+  background-color: var(--color-card-overlay);
   opacity: 0;
-  transform: translateY(1.25rem);
-  transition: opacity 0.3s ease-out, transform 0.35s ease-out;
-  will-change: transform, opacity;
+  transition: opacity 0.5s var(--card-ease);
 }
-.case-study-card-glow:hover .case-study-card-image-inner {
-  transform: scale(1.05);
+/* Light: white overlay so text reads clearly */
+.case-study-card-glow:hover .case-study-card-overlay,
+.case-study-card-glow.is-hovered .case-study-card-overlay {
+  opacity: 0.8;
 }
-.case-study-card-glow:hover .case-study-card-title {
-  transform: scale(1.12);
+[data-theme="dark"] .case-study-card-glow:hover .case-study-card-overlay,
+[data-theme="dark"] .case-study-card-glow.is-hovered .case-study-card-overlay {
+  opacity: 0.6;
 }
-.case-study-card-glow:hover .case-study-card-see-project {
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .case-study-card-glow:hover .case-study-card-overlay,
+  :root:not([data-theme="light"]) .case-study-card-glow.is-hovered .case-study-card-overlay {
+    opacity: 0.22;
+  }
+}
+.case-study-card-glow:hover .case-study-card-image-inner,
+.case-study-card-glow.is-hovered .case-study-card-image-inner {
+  transform: scale(1.03);
+}
+
+/* Default: title visible. Hover: + description fade in. All text bottom-aligned, left-justified. */
+
+/* Title: visible by default; no outline or text shadow */
+.case-study-card-title {
+  transition: opacity 0.4s var(--card-ease);
   opacity: 1;
+  text-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Description: 18px (2px up from scale-3), medium weight; brighter in dark / darker in light; no outline or shadow */
+.case-study-card-desc {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-card-desc);
+  text-shadow: none;
+  box-shadow: none;
+  outline: none;
+  transition:
+    transform 0.5s var(--card-ease) 0.06s,
+    opacity 0.5s var(--card-ease) 0.06s;
+  transform: translateY(8px);
+  opacity: 0;
+}
+.case-study-card-glow:hover .case-study-card-desc,
+.case-study-card-glow.is-hovered .case-study-card-desc {
   transform: translateY(0);
+  opacity: 1;
 }
 
 /* Theme-aware case study cover images: light for light mode, dark for dark mode */
